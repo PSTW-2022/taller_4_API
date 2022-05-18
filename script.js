@@ -104,6 +104,7 @@ fetch(incentivoDeporte)
           break;
       }
     })
+});
    
 //Aqui se agregan todos los deportes diferentes a la lista y se cuenta la cantidad de deportes por cada departamento
 for (const iter in putumayo) {
