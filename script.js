@@ -105,3 +105,99 @@ fetch(incentivoDeporte)
       }
     })
 });
+   
+//Aqui se agregan todos los deportes diferentes a la lista y se cuenta la cantidad de deportes por cada departamento
+for (const iter in putumayo) {
+  numeroDeportesPutumayo.push(parseInt(iter) + 1);
+  if (totalDeportes.indexOf(putumayo[iter]) === -1) {
+    totalDeportes.push(putumayo[iter]);
+  }
+}
+for (const iter in guainia) {
+  numeroDeportesGuainia.push(parseInt(iter) + 1);
+  if (totalDeportes.indexOf(guainia[iter]) === -1) {
+    totalDeportes.push(guainia[iter]);
+  }
+}
+
+for (const iter in cordoba) {
+  numeroDeportesCordoba.push(parseInt(iter) + 1);
+  if (totalDeportes.indexOf(cordoba[iter]) === -1) {
+    totalDeportes.push(cordoba[iter]);
+  }
+}
+
+for (const iter in vaupes) {
+  numeroDeportesVaupes.push(parseInt(iter) + 1);
+  if (totalDeportes.indexOf(vaupes[iter]) === -1) {
+    totalDeportes.push(vaupes[iter]);
+  }
+}
+
+// document.write(`Total: ${totalDeportes}<br>`);
+// document.write(`putumayo: ${putumayo}<br>`);
+// document.write(`guainia: ${guainia}<br>`);
+// document.write(`cordoba: ${cordoba}<br>`);
+// document.write(`vaupes: ${vaupes}<br>`);
+//se crean las graficas para cada departamento
+const grafPutumayo = {
+  x: numeroDeportesPutumayo,
+  y: cantidadBeneficiadosPutumayo,
+  mode: "lines+markers",
+  type: "scatter",
+  name: "Putumayo",
+  text: putumayo,
+  marker: { size: 12 },
+};
+cantidadDeporte = [];
+for (const iter in guainia) {
+  cantidadDeporte.push(parseInt(iter) + 1);
+}
+const grafGuainia = {
+  x: numeroDeportesGuainia,
+  y: cantidadBeneficiadosGuainia,
+  mode: "lines+markers",
+  type: "scatter",
+  name: "Guainia",
+  text: guainia,
+  marker: { size: 12 },
+};
+const grafCordoba = {
+  x: numeroDeportesCordoba,
+  y: cantidadBeneficiadosCordona,
+  mode: "lines+markers",
+  type: "scatter",
+  name: "Cordoba",
+  text: cordoba,
+  marker: { size: 12 },
+};
+const grafVaupes = {
+  x: numeroDeportesVaupes,
+  y: cantidadBeneficiadosVaupes,
+  mode: "lines+markers",
+  type: "scatter",
+  name: "Vaupes",
+  text: vaupes,
+  marker: { size: 12 },
+};
+const datosGraficaDeporte = [
+  grafPutumayo,
+  grafGuainia,
+  grafCordoba,
+  grafVaupes,
+];
+
+var layoutDepor = {
+  title: "Grafica 2",
+  xaxis: {
+    title: "Deporte",
+    range: [0.75, 5.25],
+  },
+  yaxis: {
+    title: "Beneficiados",
+    range: [0, 300],
+  },
+};
+
+Plotly.newPlot("grafica2", datosGraficaDeporte, layoutDepor);
+});
